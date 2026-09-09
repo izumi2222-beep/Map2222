@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>日光観光マップ</title>
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+    <style>
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>日光観光マップ</h1>
+
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+        const map = L.map('map').setView([36.758, 139.598], 14);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+      L.marker([36.7586, 139.5980])
+    .addTo(map)
+    .bindPopup(`
+        <h2>日光東照宮</h2>
+
+        <img src="neko.png.png" width="250">
+
+        <p>徳川家康を祀る神社です。</p>
+        <p>世界遺産「日光の社寺」の一つです。</p>
+    `);
+    </script>
+
+</body>
+</html>
