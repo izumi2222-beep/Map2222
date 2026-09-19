@@ -12,23 +12,26 @@
 
     <style>
         #map {
-    height: 500px;
-    width: 100%;
-}
+            height: 500px;
+            width: 100%;
+        }
 
-@media (max-width: 600px) {
-    #map {
-        height: 70vh;
-    }
-}
+        @media (max-width: 600px) {
+            #map {
+                height: 70vh;
+            }
+        }
     </style>
 </head>
 
 <body>
 
     <h1>日光観光マップ</h1>
+
     <button onclick="changeLanguage('ja')">日本語</button>
-<button onclick="changeLanguage('en')">English</button>
+    <button onclick="changeLanguage('en')">English</button>
+    <button onclick="changeLanguage('ko')">한국어</button>
+    <button onclick="changeLanguage('zh')">中文</button>
 
     <div id="map"></div>
 
@@ -37,45 +40,69 @@
     <script>
         const map = L.map('map').setView([36.758, 139.598], 14);
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; OpenStreetMap contributors'
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors',
+            referrerPolicy: 'strict-origin-when-cross-origin'
         }).addTo(map);
-     const toshogu = L.marker([36.7586, 139.5980])
-    .addTo(map);
 
-function changeLanguage(lang) {
-    if (lang === "ja") {
-        toshogu.bindPopup(`
-            <h2>日光東照宮</h2>
-            <img src="neko.png.png" width="250">
-            <p>徳川家康を祀る神社です。</p>
-            <p>世界遺産「日光の社寺」の一つです。</p>
-        `);
-    }
 
-    if (lang === "en") {
-        toshogu.bindPopup(`
-            <h2>Nikko Toshogu Shrine</h2>
-            <img src="neko.png.png" width="250">
-            <p>A shrine dedicated to Tokugawa Ieyasu.</p>
-            <p>It is one of the sites of the "Shrines and Temples of Nikko" World Heritage Site.</p>
-        `);
-    }
-}
-    L.marker([36.7486, 139.6120])
-  .addTo(map)
-  .bindPopup("神橋");
+        const toshogu = L.marker([36.7586, 139.5980])
+            .addTo(map);
 
-L.marker([36.7560, 139.5960])
-  .addTo(map)
-  .bindPopup("輪王寺");
 
-L.marker([36.7570, 139.5985])
-  .addTo(map)
-  .bindPopup("日光二荒山神社");
+        function changeLanguage(lang) {
 
-  changeLanguage("ja");
-  
+            if (lang === "ja") {
+                toshogu.bindPopup(`
+                    <h2>日光東照宮</h2>
+                    <img src="neko.png.png" width="250">
+                    <p>徳川家康を祀る神社です。</p>
+                    <p>世界遺産「日光の社寺」の一つです。</p>
+                `);
+            }
+
+            if (lang === "en") {
+                toshogu.bindPopup(`
+                    <h2>Nikko Toshogu Shrine</h2>
+                    <img src="neko.png.png" width="250">
+                    <p>A shrine dedicated to Tokugawa Ieyasu.</p>
+                    <p>It is one of the sites of the "Shrines and Temples of Nikko" World Heritage Site.</p>
+                `);
+            }
+
+            if (lang === "ko") {
+                toshogu.bindPopup(`
+                    <h2>닛코 도쇼구 신사</h2>
+                    <p>도쿠가와 이에야스를 모신 신사입니다.</p>
+                `);
+            }
+
+            if (lang === "zh") {
+                toshogu.bindPopup(`
+                    <h2>日光东照宫</h2>
+                    <p>这是供奉德川家康的神社。</p>
+                `);
+            }
+        }
+
+
+        L.marker([36.7486, 139.6120])
+            .addTo(map)
+            .bindPopup("神橋");
+
+
+        L.marker([36.7560, 139.5960])
+            .addTo(map)
+            .bindPopup("輪王寺");
+
+
+        L.marker([36.7570, 139.5985])
+            .addTo(map)
+            .bindPopup("日光二荒山神社");
+
+
+        changeLanguage("ja");
+
     </script>
 
 </body>
