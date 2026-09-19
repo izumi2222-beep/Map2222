@@ -26,12 +26,14 @@
 
 <body>
 
-    <h1>日光観光マップ</h1>
+    <h1>NIKKO NAVI</h1>
 
     <button onclick="changeLanguage('ja')">日本語</button>
     <button onclick="changeLanguage('en')">English</button>
     <button onclick="changeLanguage('ko')">한국어</button>
-    <button onclick="changeLanguage('zh')">中文</button>
+    <button onclick="changeLanguage('zh-cn')">中文（简体）</button>
+    <button onclick="changeLanguage('zh-tw')">中文（繁體）</button>
+    <button onclick="changeLanguage('vi')">Tiếng Việt</button>
 
     <div id="map"></div>
 
@@ -50,6 +52,19 @@
             .addTo(map);
 
 
+        const hutarasanzinja = L.marker([36.7570, 139.5985])
+            .addTo(map);
+
+
+        const rinnoji = L.marker([36.7560, 139.5960])
+            .addTo(map);
+
+
+        L.marker([36.7486, 139.6120])
+            .addTo(map)
+            .bindPopup("神橋");
+
+
         function changeLanguage(lang) {
 
             if (lang === "ja") {
@@ -59,7 +74,20 @@
                     <p>徳川家康を祀る神社です。</p>
                     <p>世界遺産「日光の社寺」の一つです。</p>
                 `);
+
+                hutarasanzinja.bindPopup(`
+                    <h2>二荒山神社</h2>
+                    <p>男体山をご神体とする神社で、日光の山岳信仰の中心の一つです。</p>
+                    <p>世界遺産「日光の社寺」の一つです。</p>
+                `);
+
+                rinnoji.bindPopup(`
+                    <h2>輪王寺</h2>
+                    <p>奈良時代に創建された、日光を代表する寺院です。</p>
+                    <p>三仏堂などの歴史的な建造物があります。</p>
+                `);
             }
+
 
             if (lang === "en") {
                 toshogu.bindPopup(`
@@ -68,37 +96,96 @@
                     <p>A shrine dedicated to Tokugawa Ieyasu.</p>
                     <p>It is one of the sites of the "Shrines and Temples of Nikko" World Heritage Site.</p>
                 `);
+
+                hutarasanzinja.bindPopup(`
+                    <h2>Nikko Futarasan Shrine</h2>
+                    <p>A shrine associated with Mount Nantai and the mountain worship of Nikko.</p>
+                    <p>It is one of the sites of the "Shrines and Temples of Nikko" World Heritage Site.</p>
+                `);
+
+                rinnoji.bindPopup(`
+                    <h2>Rinnoji Temple</h2>
+                    <p>Founded in the Nara period, Rinnoji is one of Nikko's most important Buddhist temples.</p>
+                    <p>It is home to historic buildings such as the Sanbutsudo Hall.</p>
+                `);
             }
+
 
             if (lang === "ko") {
                 toshogu.bindPopup(`
                     <h2>닛코 도쇼구 신사</h2>
                     <p>도쿠가와 이에야스를 모신 신사입니다.</p>
                 `);
+
+                hutarasanzinja.bindPopup(`
+                    <h2>닛코 후타라산 신사</h2>
+                    <p>난타이산을 신체로 모시는 신사로, 닛코의 산악 신앙과 관련이 있습니다.</p>
+                `);
+
+                rinnoji.bindPopup(`
+                    <h2>린노지</h2>
+                    <p>나라 시대에 창건된 닛코를 대표하는 불교 사찰입니다.</p>
+                    <p>삼불당을 비롯한 역사적인 건축물이 있습니다.</p>
+                `);
             }
 
-            if (lang === "zh") {
+
+            if (lang === "zh-cn") {
                 toshogu.bindPopup(`
                     <h2>日光东照宫</h2>
                     <p>这是供奉德川家康的神社。</p>
                 `);
+
+                hutarasanzinja.bindPopup(`
+                    <h2>日光二荒山神社</h2>
+                    <p>这是供奉男体山的神社，与日光的山岳信仰密切相关。</p>
+                `);
+
+                rinnoji.bindPopup(`
+                    <h2>轮王寺</h2>
+                    <p>轮王寺创建于奈良时代，是日光具有代表性的佛教寺院。</p>
+                    <p>寺内有三佛堂等历史建筑。</p>
+                `);
+            }
+
+
+            if (lang === "zh-tw") {
+                toshogu.bindPopup(`
+                    <h2>日光東照宮</h2>
+                    <p>這是供奉德川家康的神社。</p>
+                `);
+
+                hutarasanzinja.bindPopup(`
+                    <h2>日光二荒山神社</h2>
+                    <p>這是供奉男體山的神社，與日光的山岳信仰密切相關。</p>
+                `);
+
+                rinnoji.bindPopup(`
+                    <h2>輪王寺</h2>
+                    <p>輪王寺創建於奈良時代，是日光具有代表性的佛教寺院。</p>
+                    <p>寺內有三佛堂等歷史建築。</p>
+                `);
+            }
+
+
+            if (lang === "vi") {
+                toshogu.bindPopup(`
+                    <h2>Đền Nikko Toshogu</h2>
+                    <p>Đây là ngôi đền thờ Tokugawa Ieyasu.</p>
+                `);
+
+                hutarasanzinja.bindPopup(`
+                    <h2>Đền Nikko Futarasan</h2>
+                    <p>Đây là ngôi đền gắn liền với núi Nantai và tín ngưỡng núi ở Nikko.</p>
+                `);
+
+                rinnoji.bindPopup(`
+                    <h2>Chùa Rinnoji</h2>
+                    <p>Được thành lập vào thời kỳ Nara, Rinnoji là một trong những ngôi chùa Phật giáo tiêu biểu của Nikko.</p>
+                    <p>Chùa có các công trình lịch sử như Điện Sanbutsudo.</p>
+                `);
             }
         }
-
-
-        L.marker([36.7486, 139.6120])
-            .addTo(map)
-            .bindPopup("神橋");
-
-
-        L.marker([36.7560, 139.5960])
-            .addTo(map)
-            .bindPopup("輪王寺");
-
-
-        L.marker([36.7570, 139.5985])
-            .addTo(map)
-            .bindPopup("日光二荒山神社");
 
 
         changeLanguage("ja");
