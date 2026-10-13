@@ -27,7 +27,8 @@
 <body>
 
     <h1>NIKKO NAVI</h1>
-    <button onclick="showMyLocation()">現在地を表示</button>
+<button onclick="showMyLocation()">追跡開始</button>
+<button onclick="stopTracking()">追跡停止</button>
 
     <button onclick="changeLanguage('ja')">日本語</button>
     <button onclick="changeLanguage('en')">English</button>
@@ -192,29 +193,56 @@
         changeLanguage("ja");
 
         // 現在地を取得する
+
+let watchId = null;
+let currentLocationMarker = null;
+
+// リアルタイム追跡を開始
 function showMyLocation() {
+    if (watchId !== null) {
+        return;
+    }
+
     if (!navigator.geolocation) {
         alert('このブラウザでは位置情報を使えません');
         return;
     }
 
-    navigator.geolocation.getCurrentPosition(
+    watchId = navigator.geolocation.watchPosition(
         function(position) {
             const lat = position.coords.latitude;
             const lng = position.coords.longitude;
 
-            map.setView([lat, lng], 16);
+            // 初回はマーカーを作り、2回目以降は位置を更新
+            if (currentLocationMarker === null) {
+                currentLocationMarker = L.marker([lat, lng])
+                    .addTo(map)
+                    .bindPopup('あなたの現在地');
+            } else {
+                currentLocationMarker.setLatLng([lat, lng]);
+            }
 
-            L.marker([lat, lng])
-                .addTo(map)
-                .bindPopup('あなたの現在地')
-                .openPopup();
+            // 地図も現在地に合わせて移動
+            map.setView([lat, lng], 16);
         },
         function(error) {
-            alert('現在地を取得できませんでした。位置情報の許可や設定を確認してください。');
+            alert('位置情報を取得できませんでした。許可設定を確認してください。');
+            stopTracking();
+        },
+        {
+            enableHighAccuracy: true
         }
     );
 }
+
+// リアルタイム追跡を停止
+function stopTracking() {
+    if (watchId !== null) {
+        navigator.geolocation.clearWatch(watchId);
+        watchId = null;
+    }
+}
+
     </script>
 
 </body>
