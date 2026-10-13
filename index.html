@@ -27,6 +27,7 @@
 <body>
 
     <h1>NIKKO NAVI</h1>
+    <button onclick="showMyLocation()">現在地を表示</button>
 
     <button onclick="changeLanguage('ja')">日本語</button>
     <button onclick="changeLanguage('en')">English</button>
@@ -190,6 +191,30 @@
 
         changeLanguage("ja");
 
+        // 現在地を取得する
+function showMyLocation() {
+    if (!navigator.geolocation) {
+        alert('このブラウザでは位置情報を使えません');
+        return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+        function(position) {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+
+            map.setView([lat, lng], 16);
+
+            L.marker([lat, lng])
+                .addTo(map)
+                .bindPopup('あなたの現在地')
+                .openPopup();
+        },
+        function(error) {
+            alert('現在地を取得できませんでした。位置情報の許可や設定を確認してください。');
+        }
+    );
+}
     </script>
 
 </body>
