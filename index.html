@@ -66,6 +66,8 @@
         <button onclick="changeLanguage('zh-cn')">中文（简体）</button>
         <button onclick="changeLanguage('zh-tw')">中文（繁體）</button>
         <button onclick="changeLanguage('vi')">Tiếng Việt</button>
+        <button onclick="changeLanguage('fr')">Français</button>
+        <button onclick="changeLanguage('th')">ไทย</button>
     </div>
 
     <p id="intro">日光の観光スポットを巡ろう！</p>
@@ -86,10 +88,18 @@
         // 観光スポットのマーカー
         const toshogu = L.marker([36.7586, 139.5980]).addTo(map);
         const futarasan = L.marker([36.7570, 139.5985]).addTo(map);
-        const rinnoji = L.marker([36.7560, 139.5960]).addTo(map);
-        const shinkyo = L.marker([36.7486, 139.6120]).addTo(map);
+        const rinnoji = L.marker([36.754625,139.599208]).addTo(map);
+        const shinkyo = L.marker([36.753283,139.604044]).addTo(map);
+        const sanpukuChaya = L.marker([36.750343, 139.611154]).addTo(map);
+        const nikkopurin = L.marker([36.751003,139.608377]).addTo(map);
+        const sakaeya = L.marker([36.7478,139.618827]).addTo(map);
+        const gurume = L.marker([36.751069,139.608727]).addTo(map);
+        const rusk = L.marker([36.750278,139.611019]).addTo(map);
 
-        // 6言語の翻訳辞書
+
+
+
+        // 8言語の翻訳辞書
         const translations = {
             ja: {
                 pageTitle: 'NIKKO NAVI｜日光観光マップ',
@@ -112,13 +122,34 @@
                 },
                 rinnoji: {
                     name: '輪王寺',
-                    text: '奈良時代に創建された、日光を代表する寺院です。',
-                    detail: '三仏堂などの歴史的な建造物があります。'
+                    text: '将軍徳川家光が眠る地。',
+                    detail: '荘厳な建築物や仏像をご覧あれ。'
                 },
                 shinkyo: {
                     name: '神橋',
-                    text: '日光を代表する美しい朱塗りの橋です。'
+                    text: '豊かな自然と紅の橋が写真映えします！'
+                },
+                sanpukuChaya: {
+                    name: '三福茶屋（団子屋）',
+                    text: '香ばしく大きなお団子で大満足！'
+                },
+                nikkopurin: {
+                    name: '日光プリン亭/日光本店',
+                    text: '卵の味が濃厚でとろっとろ！'
+                },
+                sakaeya: {
+                    name: '日光さかえや/揚げゆばまんじゅう本舗',
+                    text: 'あんこと衣の塩の甘じょっぱさが絶妙！'
+                },
+                gurume: {
+                    name: '日光ぐるめ勇庵（湯葉天ぷら、コロッケ）',
+                    text: '軽やかな食感の新しい湯葉フード！'
+                },
+                rusk: {
+                    name: 'NIKKO RUSK CAFE',
+                    text: '色々な種類のサクサクラスク！'
                 }
+
             },
 
             en: {
@@ -147,7 +178,27 @@
                 },
                 shinkyo: {
                     name: 'Shinkyo Bridge',
-                    text: 'A beautiful vermilion bridge and one of Nikko’s famous landmarks.'
+                    text: 'You can take a nice photo of nature and red beautiful bridge!'
+                },
+                sanpukuChaya: {
+                    name: 'Sanpuku Chaya',
+                    text: 'You must be satisfied with big nice-smeling Dango!'
+                },
+                nikkopurin: {
+                    name: 'Nikko Pudding Tei',
+                    text: 'This pudding has rich and creamy taste of egg.'
+                },
+                sakaeya: {
+                    name: 'Nikko Sakaeya (Fried Yuba Manju Shop)',
+                    text: 'The sweet and solty of steamed bun are just right.'
+                },
+                gurume: {
+                    name: 'Nikko Gurume Yuan',
+                    text: ' This tempura is made from tofu skin and it’s light and airy!'
+                },
+                rusk: {
+                    name: 'NIKKO RUSK CAFE',
+                    text: 'Discover a variety of crispy, delicious rusks!'
                 }
             },
 
@@ -172,14 +223,34 @@
                 },
                 rinnoji: {
                     name: '린노지',
-                    text: '나라 시대에 창건된 닛코의 대표적인 불교 사찰입니다.',
-                    detail: '삼불당 등 역사적인 건축물이 있습니다.'
+                    text: '일본의 쇼군 도쿠가와 이에미쓰가 잠들어 있는 곳입니다.',
+                    detail: '웅장한 건축물과 불상을 감상해 보세요!'
                 },
                 shinkyo: {
-                    name: '신쿄 다리',
-                    text: '닛코를 대표하는 아름다운 붉은색 다리입니다.'
-                }
-            },
+    name: '신쿄 다리',
+    text: '풍부한 자연과 아름다운 붉은색 다리가 어우러져 사진 찍기에 좋은 명소입니다!'
+},
+sanpukuChaya: {
+    name: '산푸쿠 찻집 (당고 가게)',
+    text: '맛있는 일본식 경단을 즐겨보세요!'
+},
+nikkopurin: {
+    name: '닛코 푸딩테이',
+    text: '진하고 부드러운 일본식 푸딩을 즐겨보세요!'
+},
+sakaeya: {
+    name: '닛코 사카에야 (튀긴 유바 만주 전문점)',
+    text: '팥소의 달콤함과 튀김옷의 짭짤함이 절묘하게 어우러집니다!'
+},
+gurume: {
+    name: '닛코 구르메 유안',
+    text: '가볍고 바삭한 식감의 새로운 유바 요리를 즐겨보세요!'
+},
+rusk: {
+    name: '닛코 러스크 카페',
+    text: '다양한 종류의 바삭하고 맛있는 러스크를 만나보세요!'
+}
+},
 
             'zh-cn': {
                 pageTitle: 'NIKKO NAVI｜日光旅游地图',
@@ -202,13 +273,33 @@
                 },
                 rinnoji: {
                     name: '轮王寺',
-                    text: '创建于奈良时代，是日光具有代表性的佛教寺院。',
-                    detail: '寺内有三佛堂等历史建筑。'
+                    text: '这里是日本幕府将军德川家光长眠之地。',
+                    detail: '快来欣赏庄严宏伟的建筑和佛像吧！'
                 },
                 shinkyo: {
                     name: '神桥',
-                    text: '日光著名的朱红色桥梁，是当地的代表性地标。'
-                }
+                    text: '这里有丰富的自然景色和美丽的朱红色桥梁，是拍照打卡的好地方！'
+                },
+sanpukuChaya: {
+    name: '三福茶屋（团子店）',
+    text: '来品尝美味的日式团子吧！'
+},
+nikkopurin: {
+    name: '日光布丁亭',
+    text: '来品尝浓郁顺滑的日式布丁吧！'
+},
+sakaeya: {
+    name: '日光荣屋（炸豆皮馒头专卖店）',
+    text: '红豆馅的香甜与外皮的咸香完美融合！'
+},
+gurume: {
+    name: '日光美食 勇庵',
+    text: '来品尝口感轻盈的新式豆皮美食吧！'
+},
+rusk: {
+    name: '日光拉斯克咖啡馆',
+    text: '快来发现各种美味酥脆的烤面包干吧！'
+}
             },
 
             'zh-tw': {
@@ -232,12 +323,132 @@
                 },
                 rinnoji: {
                     name: '輪王寺',
-                    text: '創建於奈良時代，是日光具代表性的佛教寺院。',
-                    detail: '寺內有三佛堂等歷史建築。'
+                    text: '這裡是日本幕府將軍德川家光長眠之地。',
+                    detail: '快來欣賞莊嚴宏偉的建築和佛像吧！'
                 },
                 shinkyo: {
                     name: '神橋',
-                    text: '日光著名的朱紅色橋梁，也是當地的代表性地標。'
+                    text: '這裡有豐富的自然景色和美麗的朱紅色橋梁，是拍照打卡的好地方！'
+                },
+                sanpukuChaya: {
+    name: '三福茶屋（糰子店）',
+    text: '來品嚐美味的日式糰子吧！'
+},
+nikkopurin: {
+    name: '日光布丁亭',
+    text: '來品嚐濃郁滑順的日式布丁吧！'
+},
+sakaeya: {
+    name: '日光榮屋（炸豆皮饅頭專賣店）',
+    text: '紅豆餡的香甜與外皮的鹹香完美融合！'
+},
+gurume: {
+    name: '日光美食 勇庵',
+    text: '來品嚐口感輕盈的新式豆皮美食吧！'
+},
+rust: {
+    name: '日光拉斯克咖啡館',
+    text: '快來發現各種美味酥脆的烤麵包乾吧！'
+}
+ },
+
+            fr: {
+                pageTitle: 'NIKKO NAVI | Guide touristique de Nikko',
+                intro: 'Partez à la découverte des sites touristiques de Nikko !',
+                trackingStart: 'Partager ma position',
+                trackingStop: 'Arrêter le partage de ma position',
+                trackingPending: 'Localisation en cours...',
+                locationPopup: 'Votre position actuelle',
+                locationUnavailable: 'Ce navigateur ne prend pas en charge la géolocalisation.',
+                locationError: 'Impossible d’obtenir votre position. Vérifiez les autorisations et les paramètres de localisation.',
+                toshogu: {
+                    name: 'Sanctuaire Nikko Toshogu',
+                    text: 'Un sanctuaire dédié à Tokugawa Ieyasu.',
+                    detail: 'Il fait partie du site inscrit au patrimoine mondial de l’UNESCO « Sanctuaires et temples de Nikko ».'
+                },
+                futarasan: {
+                    name: 'Sanctuaire Nikko Futarasan',
+                    text: 'Un sanctuaire lié au mont Nantai et aux croyances montagnardes de Nikko.',
+                    detail: 'Il fait partie du site inscrit au patrimoine mondial de l’UNESCO « Sanctuaires et temples de Nikko ».'
+                },
+                rinnoji: {
+                    name: 'Temple Rinnoji',
+                    text: 'C’est le lieu de repos du shogun Tokugawa Iemitsu.',
+                    detail: 'Admirez ses bâtiments majestueux et ses statues bouddhiques !'
+                },
+                shinkyo: {
+                    name: 'Pont Shinkyo',
+                    text: 'Le pont rouge vermillon au milieu d’une nature luxuriante est idéal pour prendre de belles photos !'
+                },
+                sanpukuChaya: {
+                    name: 'Sanpuku Chaya (boutique de dango)',
+                    text: 'Savourez de délicieux gros dango grillés et parfumés !'
+                },
+                nikkopurin: {
+                    name: 'Nikko Pudding Tei',
+                    text: 'Un pudding onctueux au goût riche d’œuf !'
+                },
+                sakaeya: {
+                    name: 'Nikko Sakaeya (spécialiste du yuba manju frit)',
+                    text: 'L’équilibre entre la douceur de la pâte de haricots rouges et la légère saveur salée de l’enrobage est parfait !'
+                },
+                gurume: {
+                    name: 'Nikko Gurume Yuan',
+                    text: 'Découvrez de nouvelles spécialités au yuba, légères et croustillantes !'
+                },
+                rusk: {
+                    name: 'NIKKO RUSK CAFE',
+                    text: 'Découvrez de nombreuses variétés de biscottes japonaises bien croustillantes !'
+                }
+            },
+
+            th: {
+                pageTitle: 'NIKKO NAVI | แผนที่ท่องเที่ยวนิกโก้',
+                intro: 'ออกสำรวจสถานที่ท่องเที่ยวในนิกโก้กันเถอะ!',
+                trackingStart: 'แชร์ตำแหน่งของฉัน',
+                trackingStop: 'หยุดแชร์ตำแหน่ง',
+                trackingPending: 'กำลังค้นหาตำแหน่ง...',
+                locationPopup: 'ตำแหน่งปัจจุบันของคุณ',
+                locationUnavailable: 'เบราว์เซอร์นี้ไม่รองรับการระบุตำแหน่ง',
+                locationError: 'ไม่สามารถระบุตำแหน่งของคุณได้ โปรดตรวจสอบสิทธิ์และการตั้งค่าตำแหน่ง',
+                toshogu: {
+                    name: 'ศาลเจ้านิกโก้โทโชกู',
+                    text: 'ศาลเจ้าที่ประดิษฐานดวงวิญญาณของโทกุงาวะ อิเอยาสุ',
+                    detail: 'เป็นส่วนหนึ่งของแหล่งมรดกโลก “ศาลเจ้าและวัดแห่งนิกโก้”'
+                },
+                futarasan: {
+                    name: 'ศาลเจ้านิกโก้ฟุตาระซัง',
+                    text: 'ศาลเจ้าที่เกี่ยวข้องกับภูเขานันไตและความเชื่อเรื่องภูเขาของนิกโก้',
+                    detail: 'เป็นส่วนหนึ่งของแหล่งมรดกโลก “ศาลเจ้าและวัดแห่งนิกโก้”'
+                },
+                rinnoji: {
+                    name: 'วัดรินโนจิ',
+                    text: 'สถานที่พำนักของโชกุนโทกุงาวะ อิเอมิตสึ',
+                    detail: 'เชิญชมสถาปัตยกรรมอันสง่างามและพระพุทธรูปที่งดงาม!'
+                },
+                shinkyo: {
+                    name: 'สะพานชินเคียว',
+                    text: 'สะพานสีแดงชาดท่ามกลางธรรมชาติอันเขียวขจี เป็นจุดถ่ายรูปที่สวยงาม!'
+                },
+                sanpukuChaya: {
+                    name: 'ซัมปุกุ ชายะ (ร้านดังโงะ)',
+                    text: 'อิ่มอร่อยกับดังโงะชิ้นใหญ่หอมกรุ่นย่างใหม่!'
+                },
+                nikkopurin: {
+                    name: 'นิกโก้ พุดดิ้งเท',
+                    text: 'พุดดิ้งเนื้อนุ่มละมุนที่มีรสไข่เข้มข้น!'
+                },
+                sakaeya: {
+                    name: 'นิกโก้ ซาคาเอะยะ (ร้านยูบะมันจูทอด)',
+                    text: 'ไส้ถั่วแดงหวานหอมเข้ากันอย่างลงตัวกับแป้งทอดรสเค็มเล็กน้อย!'
+                },
+                gurume: {
+                    name: 'นิกโก้ กูร์เมต์ ยูอัน',
+                    text: 'ลองเมนูยูบะแบบใหม่ที่มีเนื้อสัมผัสเบาสบายและกรอบอร่อย!'
+                },
+                rusk: {
+                    name: 'NIKKO RUSK CAFE',
+                    text: 'พบกับรัสก์กรอบอร่อยหลากหลายชนิด!'
                 }
             },
 
@@ -262,13 +473,33 @@
                 },
                 rinnoji: {
                     name: 'Chùa Rinnoji',
-                    text: 'Ngôi chùa Phật giáo tiêu biểu ở Nikko, được thành lập vào thời Nara.',
-                    detail: 'Chùa có các công trình lịch sử như Điện Sanbutsudo.'
+                    text: 'Đây là nơi an nghỉ của Tokugawa Iemitsu, một vị tướng quân Nhật Bản.',
+                    detail: 'Hãy chiêm ngưỡng kiến trúc uy nghi và những pho tượng Phật tuyệt đẹp!'
                 },
                 shinkyo: {
                     name: 'Cầu Shinkyo',
-                    text: 'Cây cầu sơn đỏ nổi tiếng và là một địa danh tiêu biểu của Nikko.'
-                }
+                    text: 'Cây cầu màu đỏ son tuyệt đẹp giữa thiên nhiên xanh tươi là địa điểm lý tưởng để chụp ảnh!'
+                },
+                sanpukuChaya: {
+    name: 'Sanpuku Chaya (Cửa hàng bánh dango)',
+    text: 'Hãy thưởng thức món bánh dango Nhật Bản thơm ngon!'
+},
+nikkopurin: {
+    name: 'Nikko Pudding Tei',
+    text: 'Hãy thưởng thức món bánh pudding Nhật Bản béo ngậy và mềm mịn!'
+},
+sakaeya: {
+    name: 'Nikko Sakaeya (Cửa hàng bánh yuba manju chiên)',
+    text: 'Vị ngọt của nhân đậu đỏ hòa quyện hoàn hảo với vị mặn nhẹ của lớp vỏ chiên!'
+},
+gurume: {
+    name: 'Nikko Gurume Yuan',
+    text: 'Hãy thưởng thức những món ăn mới từ yuba với kết cấu nhẹ nhàng và giòn ngon!'
+},
+rusk: {
+    name: 'NIKKO RUSK CAFE',
+    text: 'Khám phá nhiều loại bánh mì nướng giòn rụm và thơm ngon!'
+}
             }
         };
 
@@ -306,6 +537,31 @@
             shinkyo.bindPopup(`
                 <h2>${t.shinkyo.name}</h2>
                 <p>${t.shinkyo.text}</p>
+            `);
+
+            sanpukuChaya.bindPopup(`
+                <h2>${t.sanpukuChaya.name}</h2>
+                <p>${t.sanpukuChaya.text}</p>
+            `);
+
+            nikkopurin.bindPopup(`
+                <h2>${t.nikkopurin.name}</h2>
+                <p>${t.nikkopurin.text}</p>
+            `);
+
+            sakaeya.bindPopup(`
+                <h2>${t.sakaeya.name}</h2>
+                <p>${t.sakaeya.text}</p>
+            `);
+
+            gurume.bindPopup(`
+                <h2>${t.gurume.name}</h2>
+                <p>${t.gurume.text}</p>
+            `);
+
+            rusk.bindPopup(`
+                <h2>${t.rusk.name}</h2>
+                <p>${t.rusk.text}</p>
             `);
         }
 
