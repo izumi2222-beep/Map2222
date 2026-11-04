@@ -110,6 +110,7 @@
                 locationPopup: 'あなたの現在地',
                 locationUnavailable: 'このブラウザでは位置情報を使えません。',
                 locationError: '現在地を取得できませんでした。位置情報の許可や設定を確認してください。',
+                officialLink: '公式サイトはこちら',
                 toshogu: {
                     name: '日光東照宮',
                     text: '徳川家康を祀る神社です。',
@@ -122,8 +123,8 @@
                 },
                 rinnoji: {
                     name: '輪王寺',
-                    text: '荘厳な建築物や仏像をご覧ください。',
-                    detail: '日本の将軍徳川家光も眠っています。'
+                    text: '将軍徳川家光が眠る地。',
+                    detail: '荘厳な建築物や仏像をご覧あれ。'
                 },
                 shinkyo: {
                     name: '神橋',
@@ -161,6 +162,7 @@
                 locationPopup: 'Your current location',
                 locationUnavailable: 'Geolocation is not supported by this browser.',
                 locationError: 'Could not get your location. Check your location permissions and settings.',
+                officialLink: 'Official website',
                 toshogu: {
                     name: 'Nikko Toshogu Shrine',
                     text: 'A shrine dedicated to Tokugawa Ieyasu.',
@@ -190,7 +192,7 @@
                 },
                 sakaeya: {
                     name: 'Nikko Sakaeya (Fried Yuba Manju Shop)',
-                    text: 'The sweet and salty of steamed bun are just right.'
+                    text: 'The sweet and solty of steamed bun are just right.'
                 },
                 gurume: {
                     name: 'Nikko Gurume Yuan',
@@ -211,6 +213,7 @@
                 locationPopup: '현재 위치',
                 locationUnavailable: '이 브라우저에서는 위치 정보를 사용할 수 없습니다.',
                 locationError: '현재 위치를 가져올 수 없습니다. 위치 권한과 설정을 확인해 주세요.',
+                officialLink: '공식 웹사이트',
                 toshogu: {
                     name: '닛코 도쇼구 신사',
                     text: '도쿠가와 이에야스를 모신 신사입니다.',
@@ -261,6 +264,7 @@ rusk: {
                 locationPopup: '您的当前位置',
                 locationUnavailable: '此浏览器不支持地理位置功能。',
                 locationError: '无法获取当前位置，请检查位置权限和设置。',
+                officialLink: '官方网站',
                 toshogu: {
                     name: '日光东照宫',
                     text: '供奉德川家康的神社。',
@@ -311,6 +315,7 @@ rusk: {
                 locationPopup: '您的目前位置',
                 locationUnavailable: '此瀏覽器不支援地理位置功能。',
                 locationError: '無法取得目前位置，請檢查位置權限與設定。',
+                officialLink: '官方網站',
                 toshogu: {
                     name: '日光東照宮',
                     text: '供奉德川家康的神社。',
@@ -361,6 +366,7 @@ rust: {
                 locationPopup: 'Votre position actuelle',
                 locationUnavailable: 'Ce navigateur ne prend pas en charge la géolocalisation.',
                 locationError: 'Impossible d’obtenir votre position. Vérifiez les autorisations et les paramètres de localisation.',
+                officialLink: 'Site officiel',
                 toshogu: {
                     name: 'Sanctuaire Nikko Toshogu',
                     text: 'Un sanctuaire dédié à Tokugawa Ieyasu.',
@@ -411,6 +417,7 @@ rust: {
                 locationPopup: 'ตำแหน่งปัจจุบันของคุณ',
                 locationUnavailable: 'เบราว์เซอร์นี้ไม่รองรับการระบุตำแหน่ง',
                 locationError: 'ไม่สามารถระบุตำแหน่งของคุณได้ โปรดตรวจสอบสิทธิ์และการตั้งค่าตำแหน่ง',
+                officialLink: 'เว็บไซต์ทางการ',
                 toshogu: {
                     name: 'ศาลเจ้านิกโก้โทโชกู',
                     text: 'ศาลเจ้าที่ประดิษฐานดวงวิญญาณของโทกุงาวะ อิเอยาสุ',
@@ -461,6 +468,7 @@ rust: {
                 locationPopup: 'Vị trí hiện tại của bạn',
                 locationUnavailable: 'Trình duyệt này không hỗ trợ định vị.',
                 locationError: 'Không thể lấy vị trí hiện tại. Vui lòng kiểm tra quyền truy cập và cài đặt vị trí.',
+                officialLink: 'Trang web chính thức',
                 toshogu: {
                     name: 'Đền Nikko Toshogu',
                     text: 'Ngôi đền thờ Tokugawa Ieyasu.',
@@ -517,56 +525,59 @@ rusk: {
 
             toshogu.bindPopup(`
                 <h2>${t.toshogu.name}</h2>
+                <img src="neko.png.png" alt="${t.toshogu.name}" width="250">
                 <p>${t.toshogu.text}</p>
                 <p>${t.toshogu.detail}</p>
-            `);
+
+                <p><a href="https://toshogu.jp/" target="_blank" rel="noopener noreferrer">${t.officialLink}</a></p>            `);
 
             futarasan.bindPopup(`
                 <h2>${t.futarasan.name}</h2>
                 <p>${t.futarasan.text}</p>
                 <p>${t.futarasan.detail}</p>
-            `);
+
+                <p><a href="http://www.futarasan.jp/" target="_blank" rel="noopener noreferrer">${t.officialLink}</a></p>            `);
 
             rinnoji.bindPopup(`
                 <h2>${t.rinnoji.name}</h2>
                 <p>${t.rinnoji.text}</p>
                 <p>${t.rinnoji.detail}</p>
-            `);
+
+                <p><a href="https://www.rinnoji.or.jp/" target="_blank" rel="noopener noreferrer">${t.officialLink}</a></p>            `);
 
             shinkyo.bindPopup(`
                 <h2>${t.shinkyo.name}</h2>
                 <p>${t.shinkyo.text}</p>
-            `);
+
+                <p><a href="http://www.futarasan.jp/" target="_blank" rel="noopener noreferrer">${t.officialLink}</a></p>            `);
 
             sanpukuChaya.bindPopup(`
                 <h2>${t.sanpukuChaya.name}</h2>
-                <img src="dango.jpg" alt="${t.sanpukuChaya.name}" width="120" style="max-width:100%; height:auto;">
                 <p>${t.sanpukuChaya.text}</p>
             `);
 
             nikkopurin.bindPopup(`
                 <h2>${t.nikkopurin.name}</h2>
-                <img src="purin.jpg" alt="${t.nikkopurin.name}" width="120" style="max-width:100%; height:auto;">
                 <p>${t.nikkopurin.text}</p>
-            `);
+
+                <p><a href="https://www.nikko-pudding.jp/" target="_blank" rel="noopener noreferrer">${t.officialLink}</a></p>            `);
 
             sakaeya.bindPopup(`
                 <h2>${t.sakaeya.name}</h2>
-                <img src="ageyuba.jpg" alt="${t.sakaeya.name}" width="120" style="max-width:100%; height:auto;">
                 <p>${t.sakaeya.text}</p>
-            `);
+
+                <p><a href="http://www.sakae-ya.com/" target="_blank" rel="noopener noreferrer">${t.officialLink}</a></p>            `);
 
             gurume.bindPopup(`
                 <h2>${t.gurume.name}</h2>
-                <img src="tenpura.jpg" alt="${t.gurume.name}" width="120" style="max-width:100%; height:auto;">
                 <p>${t.gurume.text}</p>
             `);
 
             rusk.bindPopup(`
                 <h2>${t.rusk.name}</h2>
-                <img src="rusk.jpg" alt="${t.rusk.name}" width="120" style="max-width:100%; height:auto;">
                 <p>${t.rusk.text}</p>
-            `);
+
+                <p><a href="https://nikkoruskcafe.com/" target="_blank" rel="noopener noreferrer">${t.officialLink}</a></p>            `);
         }
 
         // 現在地追跡の状態
