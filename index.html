@@ -13,6 +13,11 @@
         body {
             font-family: Arial, sans-serif;
             margin: 16px;
+     background-image: url("haikei.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
         }
 
         h1 {
@@ -39,14 +44,13 @@
         }
 
         #intro {
-            margin: 12px 0;
-            padding: 12px 14px;
-            background: #f5f8fc;
-            border: 1px solid #d9e2ee;
-            border-radius: 8px;
-            line-height: 1.7;
-            white-space: pre-line;
-        }
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+    padding: 15px;
+}
 
         #map {
             height: 500px;
